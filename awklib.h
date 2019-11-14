@@ -27,6 +27,13 @@
 #include <string.h>
 #endif
 
+//Redefine const to avoid compilation problem with visual studio
+#ifdef _WIN64
+#define CONST 
+#else
+#define CONST const
+#endif
+
 typedef struct
 {
     const char **table;
@@ -37,9 +44,9 @@ awk_table_t;
 typedef long awk_int_t;
 
 /* Declarations for awk-like support functions */
-extern const char *FILENAME;
-extern const char *FS;
-extern const char *RS;
+extern CONST char *FILENAME;
+extern CONST char *FS;
+extern CONST char *RS;
 extern size_t FNR;
 extern awk_int_t RLENGTH;
 extern awk_int_t RSTART;
@@ -65,7 +72,7 @@ need to see.
 extern void awk_add_element(awk_table_t * the_table, size_t the_index,
 			    const char *the_value);
 extern void awk_close_infile(const char *filename);
-extern const char *awk_dupstr(const char *s);
+extern CONST char *awk_dupstr(const char *s);
 extern void awk_free_string(const char *s);
 extern void awk_free_table(const char **table, size_t n);
 extern int awk_getline(const char *infile, const char **line);
@@ -75,13 +82,13 @@ extern void awk_initialize(void);
 extern int awk_is_NaN(const char *s);
 extern int awk_is_negative_infinity(const char *s);
 extern int awk_is_positive_infinity(const char *s);
-extern const char *awk_long_to_string(long n);
+extern CONST char *awk_long_to_string(long n);
 extern int awk_match(const char *source, const char *regexp);
 extern void awk_new_table(awk_table_t * the_table);
 extern char *awk_padstr(const char *s, size_t extra);
 extern int awk_sub(const char *regexp, const char *replacement,
 		   char **target);
-extern const char *awk_substr(const char *source, awk_int_t start,
+extern CONST char *awk_substr(const char *source, awk_int_t start,
 			      awk_int_t length);
 extern size_t awk_split(const char *s, const char ***parts,
 			const char *regexp);
@@ -89,7 +96,8 @@ extern double awk_string_to_double(const char *s);
 extern long awk_string_to_long(const char *s);
 extern unsigned long awk_string_to_unsigned_long(const char *s);
 extern void awk_terminate(void);
-extern const char *awk_tolower(const char *s);
-extern const char *awk_toupper(const char *s);
-extern const char *awk_unsigned_long_to_string(unsigned long n);
+extern CONST char *awk_tolower(const char *s);
+extern CONST char *awk_toupper(const char *s);
+extern CONST char *awk_unsigned_long_to_string(unsigned long n);
+
 #endif /* !defined(AWKLIB_H_) */
