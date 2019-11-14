@@ -51,9 +51,11 @@ static int _c;
 
 #define FREE(p) (void)free((void*)(p))
 
-const char *FILENAME = (const char *)NULL;
-const char *FS = (const char *)NULL;
-const char *RS = (const char *)NULL;
+
+
+CONST char *FILENAME = (const char *)NULL;
+CONST char *FS = (const char *)NULL;
+CONST char *RS = (const char *)NULL;
 
 size_t FNR = 0;
 awk_int_t RLENGTH = -1L;
@@ -530,7 +532,7 @@ awk_close_infile(const char *filename)
 }
 
 
-const char *
+CONST char *
 awk_dupstr(const char *s)
 {
     /*******************************************************************
@@ -541,7 +543,7 @@ awk_dupstr(const char *s)
 
     ENSURE_INITIALIZATION();
 
-    return ((const char *)awk_padstr(s, 0));
+    return ((CONST char *)awk_padstr(s, 0));
 }
 
 
@@ -734,7 +736,7 @@ awk_is_positive_infinity(const char *s)
 }
 
 
-const char *
+CONST char *
 awk_long_to_string(long n)
 {
     /*******************************************************************
@@ -914,7 +916,7 @@ awk_sub(const char *regular_expression, const char *replacement,
 }
 
 
-const char *
+CONST char *
 awk_substr(const char *source, awk_int_t start, awk_int_t length)
 {
     /*******************************************************************
@@ -946,7 +948,7 @@ awk_substr(const char *source, awk_int_t start, awk_int_t length)
 	(void)strncpy(t, &source[start - 1], n);
     t[n] = '\0';
 
-    return ((const char *)t);
+    return ((CONST char *)t);
 }
 
 
@@ -995,14 +997,14 @@ awk_terminate(void)
 }
 
 
-const char *
+CONST char *
 awk_tolower(const char *s)
 {
     /*******************************************************************
       Return a copy of S converted to lowercase.
     *******************************************************************/
 
-    const char *t;
+    CONST char *t;
     char *u;
 
     ENSURE_INITIALIZATION();
@@ -1018,14 +1020,14 @@ awk_tolower(const char *s)
 }
 
 
-const char *
+CONST char *
 awk_toupper(const char *s)
 {
     /*******************************************************************
       Return a copy of S converted to uppercase.
     *******************************************************************/
 
-    const char *t;
+    CONST char *t;
     char *u;
 
     ENSURE_INITIALIZATION();
@@ -1041,7 +1043,7 @@ awk_toupper(const char *s)
 }
 
 
-const char *
+CONST char *
 awk_unsigned_long_to_string(unsigned long n)
 {
     /*******************************************************************
@@ -1054,7 +1056,7 @@ awk_unsigned_long_to_string(unsigned long n)
     ENSURE_INITIALIZATION();
 
     (void)sprintf(s, "%lu", n);
-    return (awk_dupstr(s));
+    return (CONST char *)(awk_dupstr(s));
 }
 
 
